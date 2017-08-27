@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_row_kick_starter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/rv_row_border"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextBox"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:text="hello"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_percentage_funding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_pledged_amount"
+        style="@style/TextBox"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="0dp"
+        android:gravity="start|center_vertical"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_pledged_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_backers"
+        style="@style/TextBox"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="start|center_vertical"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_backers"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pledged_amount" />
+
+    <TextView
+        android:id="@+id/tv_percentage_funding"
+        style="@style/TextBox"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="start|center_vertical"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_funding_percentage"
+        app:layout_constraintTop_toBottomOf="@+id/tv_backers" />
+
+    <TextView
+        android:id="@+id/lbl_pledged_amount"
+        style="@style/TextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/pledged_amount"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pledged_amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/lbl_backers"
+        style="@style/TextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/backers"
+        app:layout_constraintEnd_toStartOf="@+id/tv_backers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_pledged_amount" />
+
+    <TextView
+        android:id="@+id/lbl_funding_percentage"
+        style="@style/TextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/funding_percentage"
+        app:layout_constraintEnd_toStartOf="@+id/tv_percentage_funding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_backers" />
+
+</android.support.constraint.ConstraintLayout>

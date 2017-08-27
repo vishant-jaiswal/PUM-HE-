@@ -1,6 +1,5 @@
 package com.payu.vishant.payukickstarter.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,19 +7,31 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.payu.vishant.payukickstarter.R;
 import com.payu.vishant.payukickstarter.adapters.RvAdapterKickStarter;
+import com.payu.vishant.payukickstarter.adapters.RvAdapterProjectWeLove;
+import com.payu.vishant.payukickstarter.models.KickStarter;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ActivityProjectWeLove extends SlidingActivity {
 
     private TextView tv_title;
+    private ArrayList<KickStarter> projectWeLoveList;
+    private RecyclerView rv_project_we_love;
+    private RvAdapterProjectWeLove rvAdapterProjectWeLove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_we_love);
+        projectWeLoveList =  (ArrayList<KickStarter>)getIntent().getSerializableExtra("PWL");
+        Collections.sort(projectWeLoveList, new KickStarter.PopularityComaparator());
         initializeViews();
+        initializeRecyclerView();
     }
 
     @Override
@@ -44,21 +55,19 @@ public class ActivityProjectWeLove extends SlidingActivity {
     }
 
     private void initializeRecyclerView() {
-       /* Log.i(TAG, kickStarterArrayList.toString());
-        if (kickStarterArrayList.size() > 0) {
-            rv_kickstarter = (RecyclerView) findViewById(R.id.rv_kickstarter);
+        if (projectWeLoveList.size() > 0) {
+            rv_project_we_love = (RecyclerView) findViewById(R.id.rv_project_we_love);
             LinearLayoutManager manager = new LinearLayoutManager(this);
             manager.setOrientation(LinearLayoutManager.VERTICAL);
-            rv_kickstarter.setLayoutManager(manager);
-            rvAdapterKickStarter = new RvAdapterKickStarter(this, kickStarterArrayList);
-            rv_kickstarter.setAdapter(rvAdapterKickStarter);
+            rv_project_we_love.setLayoutManager(manager);
+            rvAdapterProjectWeLove = new RvAdapterProjectWeLove(this, projectWeLoveList);
+            rv_project_we_love.setAdapter(rvAdapterProjectWeLove);
 
-            ll_empty_view.setVisibility(View.GONE);
-            cl_non_empty_view.setVisibility(View.VISIBLE);
+            /*ll_empty_view.setVisibility(View.GONE);
+            cl_non_empty_view.setVisibility(View.VISIBLE);*/
         } else {
-            tv_msg.setText(R.string.empty_list_msg);
+            Toast.makeText(this, "Empty List!!!", Toast.LENGTH_SHORT).show();
         }
-*/
 
     }
 }

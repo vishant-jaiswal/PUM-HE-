@@ -92,9 +92,9 @@ public class KickStarter implements Serializable {
 
             if (j.has("num.backers")) {
                 String backers = j.getString("num.backers");
-                if(backers.matches("^[0-9]*$")){
+                if (backers.matches("^[0-9]*$")) {
                     this.num_backers = Integer.valueOf(backers);
-                }else{
+                } else {
                     num_backers = 0;
                 }
             } else {
@@ -280,6 +280,18 @@ public class KickStarter implements Serializable {
         @Override
         public int compare(KickStarter kickStarter, KickStarter t1) {
             return t1.getTitle().compareToIgnoreCase(kickStarter.getTitle());
+        }
+    }
+
+    public static class PopularityComaparator implements Comparator<KickStarter> {
+
+        @Override
+        public int compare(KickStarter t1, KickStarter t2) {
+            if (t1.getNum_backers() > t2.getNum_backers())
+                return 1;
+            else if(t1.getNum_backers() < t2.getNum_backers())
+                return -1;
+            else return 0;
         }
     }
 }

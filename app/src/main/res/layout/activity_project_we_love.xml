@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.payu.vishant.payukickstarter.activities.ActivityProjectWeLove">
 
     <include layout="@layout/toolbar" />
@@ -11,6 +12,7 @@
         android:id="@+id/rv_project_we_love"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_marginBottom="8dp" />
 
 </LinearLayout>
