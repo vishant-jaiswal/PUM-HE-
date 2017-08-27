@@ -1,5 +1,7 @@
 package com.payu.vishant.payukickstarter.activities;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -7,11 +9,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.payu.vishant.payukickstarter.R;
 import com.payu.vishant.payukickstarter.models.KickStarter;
+import com.payu.vishant.payukickstarter.utils.Utils;
+
+import static com.payu.vishant.payukickstarter.utils.Utils.BaseHost;
+import static com.payu.vishant.payukickstarter.utils.Utils.BaseUrl;
 
 public class ActivityKickStartDetail extends SlidingActivity implements AppBarLayout.OnOffsetChangedListener {
 
@@ -30,6 +40,8 @@ public class ActivityKickStartDetail extends SlidingActivity implements AppBarLa
     private TextView tv_main_ll_title;
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolbar;
+
+    private WebView wv_web_details;
 
 
     @Override
@@ -68,6 +80,29 @@ public class ActivityKickStartDetail extends SlidingActivity implements AppBarLa
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        wv_web_details = findViewById(R.id.wv_web_details);
+
+        wv_web_details.loadUrl(Utils.getUrl(kickStarter.getUrl()));
+        WebSettings webSettings = wv_web_details.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        wv_web_details.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if(request.getUrl().getHost().equals(BaseHost))
+                    {
+                        return false;
+                    }
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW,request.getUrl());
+                    startActivity(intent);
+                    return true;
+                }else {
+                    return true;
+                }
+            }
+        });
 
     }
 
