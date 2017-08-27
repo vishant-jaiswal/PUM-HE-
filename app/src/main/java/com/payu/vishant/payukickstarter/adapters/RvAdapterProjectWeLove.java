@@ -11,13 +11,7 @@ import com.payu.vishant.payukickstarter.R;
 import com.payu.vishant.payukickstarter.models.KickStarter;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import static com.payu.vishant.payukickstarter.utils.Utils.getDayDiff;
-
-/**
- * Created by Vishant on 8/27/2017.
- */
 
 public class RvAdapterProjectWeLove extends RecyclerView.Adapter<RvAdapterProjectWeLove.RvProjectWeLoveViewHolder> {
 

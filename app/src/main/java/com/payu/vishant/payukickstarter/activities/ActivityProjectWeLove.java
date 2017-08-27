@@ -12,10 +12,13 @@ import android.widget.Toast;
 import com.payu.vishant.payukickstarter.R;
 import com.payu.vishant.payukickstarter.adapters.RvAdapterKickStarter;
 import com.payu.vishant.payukickstarter.adapters.RvAdapterProjectWeLove;
+import com.payu.vishant.payukickstarter.database.RealmInterfaceProjects;
 import com.payu.vishant.payukickstarter.models.KickStarter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import io.realm.RealmResults;
 
 public class ActivityProjectWeLove extends SlidingActivity {
 
@@ -28,7 +31,7 @@ public class ActivityProjectWeLove extends SlidingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_we_love);
-        projectWeLoveList =  (ArrayList<KickStarter>)getIntent().getSerializableExtra("PWL");
+        projectWeLoveList = RealmInterfaceProjects.getProjectWeLove(this); /*(ArrayList<KickStarter>)getIntent().getSerializableExtra("PWL");*/
         Collections.sort(projectWeLoveList, new KickStarter.PopularityComaparator());
         initializeViews();
         initializeRecyclerView();

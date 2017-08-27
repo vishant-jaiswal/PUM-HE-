@@ -9,11 +9,15 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by Vishant on 8/13/2017.
  */
 
-public class KickStarter implements Serializable {
+public class KickStarter extends RealmObject implements Serializable {
+    @PrimaryKey
     private int s_no;
     private long amt_pledged;
     private String blurb;

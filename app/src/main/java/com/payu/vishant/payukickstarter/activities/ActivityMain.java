@@ -34,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.payu.vishant.payukickstarter.R;
 import com.payu.vishant.payukickstarter.adapters.RvAdapterKickStarter;
+import com.payu.vishant.payukickstarter.database.RealmInterfaceProjects;
 import com.payu.vishant.payukickstarter.dialogs.DialogFilter;
 import com.payu.vishant.payukickstarter.dialogs.DialogSort;
 import com.payu.vishant.payukickstarter.models.KickStarter;
@@ -67,8 +68,6 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
 
     @Override
     protected void onStart() {
-        kickStarterArrayList = new ArrayList<>();
-        projectWeLoveList = new ArrayList<>();
         super.onStart();
     }
 
@@ -80,12 +79,12 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
     @Override
     public void onSwipeLeft() {
         Intent intent = new Intent(this,ActivityProjectWeLove.class);
-        for(KickStarter k : kickStarterArrayList){
+        /*for(KickStarter k : kickStarterArrayList){
             if((k.getPercentage_funded() > MAX_FUNDING_LIMIT) && (k.getNum_backers() > MAX_BACKERS_LIMIT)){
                 projectWeLoveList.add(k);
             }
         }
-        intent.putExtra("PWL",projectWeLoveList);
+        intent.putExtra("PWL",projectWeLoveList);*/
         startActivity(intent);
     }
 
@@ -98,6 +97,11 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
     }
 
     private void initializeViews() {
+
+        kickStarterArrayList = new ArrayList<>();
+        projectWeLoveList = new ArrayList<>();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
         tv_title.setText(R.string.pay_u_kick_start);
@@ -152,7 +156,9 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
                 JSONArray server_response = response;
                 for (int i = 0; i < server_response.length(); i++) {
                     try {
-                        kickStarterArrayList.add(new KickStarter(server_response.getJSONObject(i)));
+                        KickStarter k = new KickStarter(server_response.getJSONObject(i));
+                        kickStarterArrayList.add(k);
+                        RealmInterfaceProjects.saveProjects(getBaseContext(),k);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
