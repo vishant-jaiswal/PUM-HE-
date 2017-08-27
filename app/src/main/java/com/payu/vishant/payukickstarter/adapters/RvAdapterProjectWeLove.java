@@ -48,7 +48,6 @@ public class RvAdapterProjectWeLove extends RecyclerView.Adapter<RvAdapterProjec
         private TextView tv_pledged_amount;
         private TextView tv_backers;
         private TextView tv_percentage_funding;
-        /*private View cl_row_kick_starter;*/
 
         public RvProjectWeLoveViewHolder(View itemView) {
             super(itemView);
@@ -66,13 +65,6 @@ public class RvAdapterProjectWeLove extends RecyclerView.Adapter<RvAdapterProjec
             tv_pledged_amount.setText(String.valueOf(kickStarter.getAmt_pledged()));
             tv_backers.setText(String.valueOf(kickStarter.getNum_backers()));
             tv_percentage_funding.setText(String.valueOf(kickStarter.getPercentage_funded()));
-            /*cl_row_kick_starter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startDetailActivity(kickStarter);
-                }
-            });*/
-
         }
     }
 }
