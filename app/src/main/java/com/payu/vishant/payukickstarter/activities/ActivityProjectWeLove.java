@@ -62,9 +62,6 @@ public class ActivityProjectWeLove extends SlidingActivity {
             rv_project_we_love.setLayoutManager(manager);
             rvAdapterProjectWeLove = new RvAdapterProjectWeLove(this, projectWeLoveList);
             rv_project_we_love.setAdapter(rvAdapterProjectWeLove);
-
-            /*ll_empty_view.setVisibility(View.GONE);
-            cl_non_empty_view.setVisibility(View.VISIBLE);*/
         } else {
             Toast.makeText(this, "Empty List!!!", Toast.LENGTH_SHORT).show();
         }
