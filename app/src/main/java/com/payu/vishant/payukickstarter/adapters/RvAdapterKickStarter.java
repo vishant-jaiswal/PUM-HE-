@@ -86,7 +86,7 @@ public class RvAdapterKickStarter extends RecyclerView.Adapter<RvAdapterKickStar
 
     private void startDetailActivity(KickStarter kickStarter) {
         Intent intent = new Intent(mContext, ActivityKickStartDetail.class);
-        intent.putExtra("kickStarter",kickStarter);
+        intent.putExtra("kickStarter",kickStarter.getS_no());
         mContext.startActivity(intent);
     }
 

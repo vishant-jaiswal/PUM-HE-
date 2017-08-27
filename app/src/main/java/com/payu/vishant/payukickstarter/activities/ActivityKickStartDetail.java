@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.payu.vishant.payukickstarter.R;
+import com.payu.vishant.payukickstarter.database.RealmInterfaceProjects;
 import com.payu.vishant.payukickstarter.models.KickStarter;
 import com.payu.vishant.payukickstarter.utils.Utils;
 
@@ -32,6 +33,7 @@ public class ActivityKickStartDetail extends SlidingActivity implements AppBarLa
     private boolean mIsTheTitleVisible = false;
     private boolean mIsTheTitleContainerVisible = true;
 
+    private int kickStarter_s_no;
     private KickStarter kickStarter;
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -48,7 +50,8 @@ public class ActivityKickStartDetail extends SlidingActivity implements AppBarLa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kick_start_detail_sec);
-        kickStarter = (KickStarter) getIntent().getSerializableExtra("kickStarter");
+        kickStarter_s_no =  getIntent().getIntExtra("kickStarter",0);
+        kickStarter = RealmInterfaceProjects.getKickStarterProjectByS_No(this,kickStarter_s_no);
         initializeView();
 
 

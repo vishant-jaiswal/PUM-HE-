@@ -2,6 +2,7 @@ package com.payu.vishant.payukickstarter.database;
 
 import android.content.Context;
 
+import com.payu.vishant.payukickstarter.activities.ActivityKickStartDetail;
 import com.payu.vishant.payukickstarter.activities.ActivityMain;
 import com.payu.vishant.payukickstarter.models.KickStarter;
 
@@ -52,5 +53,11 @@ public class RealmInterfaceProjects {
         Realm realm = getRealm(c);
         RealmResults<KickStarter> results = realm.where(KickStarter.class).findAll();
         return new ArrayList(results);
+    }
+
+    public static KickStarter getKickStarterProjectByS_No(Context context, int kickStarter_s_no) {
+        Realm realm = getRealm(context);
+        KickStarter k = realm.where(KickStarter.class).equalTo("s_no",kickStarter_s_no).findFirst();
+        return k;
     }
 }
