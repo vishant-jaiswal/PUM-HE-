@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,8 +53,8 @@ public class ActivityProjectWeLove extends SlidingActivity {
         tv_title = (TextView) toolbar.findViewById(R.id.tv_title);
         tv_title.setText(R.string.project_we_love);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -69,5 +70,13 @@ public class ActivityProjectWeLove extends SlidingActivity {
             Toast.makeText(this, "Empty List!!!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -157,7 +157,7 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
                 for (int i = 0; i < server_response.length(); i++) {
                     try {
                         KickStarter k = new KickStarter(server_response.getJSONObject(i));
-                        kickStarterArrayList.add(k);
+                       // kickStarterArrayList.add(k);
                         RealmInterfaceProjects.saveProjects(getBaseContext(),k);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -185,6 +185,9 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
 
     private void initializeRecyclerView() {
         Log.i(TAG, kickStarterArrayList.toString());
+
+        kickStarterArrayList = RealmInterfaceProjects.getAllProjects(this);
+
         if (kickStarterArrayList.size() > 0) {
             rv_kickstarter = (RecyclerView) findViewById(R.id.rv_kickstarter);
             LinearLayoutManager manager = new LinearLayoutManager(this);

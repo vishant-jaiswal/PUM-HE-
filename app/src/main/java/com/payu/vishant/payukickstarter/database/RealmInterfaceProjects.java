@@ -2,6 +2,7 @@ package com.payu.vishant.payukickstarter.database;
 
 import android.content.Context;
 
+import com.payu.vishant.payukickstarter.activities.ActivityMain;
 import com.payu.vishant.payukickstarter.models.KickStarter;
 
 import java.util.ArrayList;
@@ -44,6 +45,12 @@ public class RealmInterfaceProjects {
         Realm realm = getRealm(c);
         RealmResults<KickStarter> results = realm.where(KickStarter.class).greaterThan("num_backers", 30000)
                 .greaterThan("percentage_funded", 60).findAll();
+        return new ArrayList(results);
+    }
+
+    public static ArrayList<KickStarter> getAllProjects(Context c) {
+        Realm realm = getRealm(c);
+        RealmResults<KickStarter> results = realm.where(KickStarter.class).findAll();
         return new ArrayList(results);
     }
 }
