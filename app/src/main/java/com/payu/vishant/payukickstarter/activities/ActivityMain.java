@@ -60,14 +60,26 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
     private RvAdapterKickStarter rvAdapterKickStarter;
 
     private ArrayList<KickStarter> kickStarterArrayList;
-
-    private GestureDetectorCompat gestureDetectorCompat;
-    private View.OnTouchListener gestureListener;
+    private ArrayList<KickStarter> projectWeLoveList;
 
     @Override
     protected void onStart() {
         kickStarterArrayList = new ArrayList<>();
         super.onStart();
+    }
+
+    @Override
+    public void onSwipeRight() {
+
+    }
+
+    @Override
+    public void onSwipeLeft() {
+        Intent intent = new Intent(this,ActivityProjectWeLove.class);
+        for(KickStarter k : kickStarterArrayList){
+
+        }
+        startActivity(intent);
     }
 
     @Override
@@ -86,18 +98,9 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        gestureDetectorCompat = new GestureDetectorCompat(this, new MyGestureListener());
-        gestureListener = new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetectorCompat.onTouchEvent(event);
-            }
-        };
-
 
         ll_empty_view = findViewById(R.id.ll_empty_view);
         cl_non_empty_view = findViewById(R.id.cl_non_empty_view);
-
-        cl_non_empty_view.setOnTouchListener(gestureListener);
 
         tv_msg = findViewById(R.id.tv_msg);
         pb = findViewById(R.id.pb);
@@ -237,29 +240,6 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
 
         rvAdapterKickStarter.setSearchFilter(newList);
         return true;
-    }
-
-
-    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
-                               float velocityX, float velocityY) {
-
-
-            if (event2.getX() < event1.getX()) {
-                Toast.makeText(getBaseContext(),
-                        "Swipe left - startActivity()",
-                        Toast.LENGTH_SHORT).show();
-
-                //switch another activity
-                Intent intent = new Intent(
-                        ActivityMain.this, ActivityProjectWeLove.class);
-                startActivity(intent);
-            }
-
-            return true;
-        }
     }
 
 }

@@ -72,7 +72,7 @@ public class RvAdapterKickStarter extends RecyclerView.Adapter<RvAdapterKickStar
             tv_title.setText(kickStarter.getTitle());
             tv_title.setSelected(true);
             tv_pledged_amount.setText(String.valueOf(kickStarter.getAmt_pledged()));
-            tv_backers.setText(kickStarter.getNum_backers());
+            tv_backers.setText(String.valueOf(kickStarter.getNum_backers()));
             tv_number_of_days.setText(String.valueOf(getDayDiff(new Date(System.currentTimeMillis()),kickStarter.getEnd_time())));
             cl_row_kick_starter.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -42,6 +42,16 @@ public class ActivityKickStartDetail extends SlidingActivity implements AppBarLa
 
     }
 
+    @Override
+    public void onSwipeRight() {
+
+    }
+
+    @Override
+    public void onSwipeLeft() {
+
+    }
+
     private void initializeView() {
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         mTitle = (TextView) findViewById(R.id.main_textview_title);

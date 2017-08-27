@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.payu.vishant.payukickstarter.R;
 
 
-public class SlidingActivity extends AppCompatActivity {
+public abstract class SlidingActivity extends AppCompatActivity {
 
     int onStartCount = 0;
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -86,13 +86,9 @@ public class SlidingActivity extends AppCompatActivity {
         return gestureDetector.onTouchEvent(event);
     }
 
-    public void onSwipeRight(){
-        Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
-    }
+    public abstract void onSwipeRight();
 
-    public void onSwipeLeft(){
-        Toast.makeText(this, "Swipe Left", Toast.LENGTH_SHORT).show();
-    }
+    public abstract void onSwipeLeft();
 
 
 }

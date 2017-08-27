@@ -23,7 +23,7 @@ public class KickStarter implements Serializable {
     private Date end_time;
     private String location;
     private int percentage_funded;
-    private String num_backers;
+    private int num_backers;
     private String state;
     private String title;
     private String type;
@@ -91,9 +91,14 @@ public class KickStarter implements Serializable {
             }
 
             if (j.has("num.backers")) {
-                this.num_backers = j.getString("num.backers");
+                String backers = j.getString("num.backers");
+                if(backers.matches("^[0-9]*$")){
+                    this.num_backers = Integer.valueOf(backers);
+                }else{
+                    num_backers = 0;
+                }
             } else {
-                this.num_backers = "";
+                this.num_backers = 0;
             }
 
             if (j.has("state")) {
@@ -198,11 +203,11 @@ public class KickStarter implements Serializable {
         this.percentage_funded = percentage_funded;
     }
 
-    public String getNum_backers() {
+    public int getNum_backers() {
         return num_backers;
     }
 
-    public void setNum_backers(String num_backers) {
+    public void setNum_backers(int num_backers) {
         this.num_backers = num_backers;
     }
 

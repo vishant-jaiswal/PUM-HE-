@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class DialogFilter extends DialogFragment implements CompoundButton.OnCheckedChangeListener {
 
     static ArrayList<KickStarter> kickStarterArrayList;
-    static ArrayList<String> number_of_backers;
+    static ArrayList<Integer> number_of_backers;
     ArrayList<Integer> checkBoxIdList;
     private static LinearLayout ll_dialog_filter;
 
@@ -47,9 +47,9 @@ public class DialogFilter extends DialogFragment implements CompoundButton.OnChe
             }
         }
 
-        for(String string : number_of_backers){
+        for(int no_backers : number_of_backers){
             CheckBox ch = new CheckBox(getContext());
-            ch.setText(string);
+            ch.setText(String.valueOf(no_backers));
             ch.setChecked(true);
             ch.setOnCheckedChangeListener(this);
             ll_dialog_filter.addView(ch);
