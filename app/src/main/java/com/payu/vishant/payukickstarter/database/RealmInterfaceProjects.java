@@ -60,4 +60,10 @@ public class RealmInterfaceProjects {
         KickStarter k = realm.where(KickStarter.class).equalTo("s_no",kickStarter_s_no).findFirst();
         return k;
     }
+
+    public static ArrayList<KickStarter> getNumBackers(Context context) {
+        Realm realm = getRealm(context);
+        RealmResults<KickStarter> num_backers = realm.where(KickStarter.class).distinct("num_backers");
+        return new ArrayList(num_backers);
+    }
 }

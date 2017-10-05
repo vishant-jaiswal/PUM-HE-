@@ -1,5 +1,6 @@
 package com.payu.vishant.payukickstarter.dialogs;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import com.payu.vishant.payukickstarter.R;
+import com.payu.vishant.payukickstarter.database.RealmInterfaceProjects;
 import com.payu.vishant.payukickstarter.models.KickStarter;
 
 import java.util.ArrayList;
@@ -25,12 +27,15 @@ public class DialogFilter extends DialogFragment implements CompoundButton.OnChe
     static ArrayList<Integer> number_of_backers;
     ArrayList<Integer> checkBoxIdList;
     private static LinearLayout ll_dialog_filter;
+    private static Context mContext;
+    private FilterChanged mListener;
 
-    public static DialogFilter newInstance(ArrayList<KickStarter> kickStarters) {
+    public static DialogFilter newInstance(Context c) {
         DialogFilter fragment = new DialogFilter();
         Bundle args = new Bundle();
         fragment.setArguments(args);
-        kickStarterArrayList = kickStarters;
+        //mContext = c;
+        kickStarterArrayList = RealmInterfaceProjects.getNumBackers(mContext);
         number_of_backers = new ArrayList<>();
         return fragment;
     }
@@ -41,13 +46,11 @@ public class DialogFilter extends DialogFragment implements CompoundButton.OnChe
         View root_view = inflater.inflate(R.layout.dialog_filter, null);
         ll_dialog_filter = root_view.findViewById(R.id.ll_dialog_filter);
 
-        for(KickStarter kickStarter : kickStarterArrayList){
-            if(!number_of_backers.contains(kickStarter.getNum_backers())){
-                number_of_backers.add(kickStarter.getNum_backers());
-            }
+        for (KickStarter kickStarter : kickStarterArrayList) {
+            number_of_backers.add(kickStarter.getNum_backers());
         }
 
-        for(int no_backers : number_of_backers){
+        for (int no_backers : number_of_backers) {
             CheckBox ch = new CheckBox(getContext());
             ch.setText(String.valueOf(no_backers));
             ch.setChecked(true);
@@ -60,7 +63,32 @@ public class DialogFilter extends DialogFragment implements CompoundButton.OnChe
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        //if(b){
+        String c = (String) compoundButton.getText();
+        mListener.filterChanged(Integer.valueOf(c),b);
+        //}
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+        if (context instanceof FilterChanged) {
+            mListener = (FilterChanged) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentIsZoneSafeListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface FilterChanged {
+        void filterChanged(int num_backers,boolean is_checked);
     }
 }
 

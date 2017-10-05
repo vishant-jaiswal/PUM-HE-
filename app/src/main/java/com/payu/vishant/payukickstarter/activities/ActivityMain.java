@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,14 +14,11 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkError;
 import com.android.volley.Request;
@@ -47,7 +43,8 @@ import java.util.ArrayList;
 
 public class ActivityMain extends SlidingActivity implements View.OnClickListener,
         DialogSort.DialogSortCallBack,
-        SearchView.OnQueryTextListener {
+        SearchView.OnQueryTextListener,
+        DialogFilter.FilterChanged {
 
     private static final String TAG = "ActivityMain";
     private TextView tv_title;
@@ -216,7 +213,7 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
 
     private void showFilterDialog() {
         FragmentManager manager = getSupportFragmentManager();
-        DialogFilter dialogFilter = DialogFilter.newInstance(kickStarterArrayList);
+        DialogFilter dialogFilter = DialogFilter.newInstance(this);
         dialogFilter.show(manager, "dialogFilter");
     }
 
@@ -258,4 +255,21 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
         return true;
     }
 
+
+    @Override
+    public void filterChanged(int num_backers, boolean is_checked) {
+        ArrayList<KickStarter> newList = new ArrayList<>();
+        newList.addAll(kickStarterArrayList);
+        for(KickStarter kickStarter : kickStarterArrayList){
+            if(kickStarter.getNum_backers() == num_backers){
+                if(!is_checked){
+                    newList.remove(kickStarter);
+                }else {
+                    newList.add(kickStarter);
+                }
+            }
+        }
+
+        rvAdapterKickStarter.filter(newList);
+    }
 }

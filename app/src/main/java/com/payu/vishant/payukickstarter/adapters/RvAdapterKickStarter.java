@@ -97,6 +97,12 @@ public class RvAdapterKickStarter extends RecyclerView.Adapter<RvAdapterKickStar
 
     }
 
+    public void filter(ArrayList<KickStarter> newKickStarterList) {
+        kickStarterArrayList = new ArrayList<>();
+        kickStarterArrayList.addAll(newKickStarterList);
+        notifyDataSetChanged();
+    }
+
 
     public void SortAlphabatically(boolean ASC) {
         if (ASC) {
