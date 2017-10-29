@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">PayUKickStarter</string>
+    <string name="app_name">KickStarter</string>
     <string name="search">Search</string>
-    <string name="pay_u_kick_start">PayU KickStart</string>
+    <string name="pay_u_kick_start">KickStart</string>
     <string name="sort">Sort</string>
     <string name="fetching">Fetching...</string>
     <string name="empty_list_msg">Empty List Try Again</string>

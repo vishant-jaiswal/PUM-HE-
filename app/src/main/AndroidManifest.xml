@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.payu.vishant.payukickstarter">
+    package="com.hackerearth.vishant.kickstarter">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MainActivityTheme"
-        android:name=".PayUApplication">
-        <activity android:name=".activities.ActivityMain">
+        android:name="com.hackerearth.vishant.kickstarter.KickStarterApplication">
+        <activity android:name="com.hackerearth.vishant.kickstarter.activities.ActivityMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +20,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ActivityKickStartDetail"
+            android:name="com.hackerearth.vishant.kickstarter.activities.ActivityKickStartDetail"
             android:theme="@style/MainActivityTheme" />
-        <activity android:name=".activities.ActivityProjectWeLove"></activity>
+        <activity android:name="com.hackerearth.vishant.kickstarter.activities.ActivityProjectWeLove"></activity>
     </application>
 
 </manifest>

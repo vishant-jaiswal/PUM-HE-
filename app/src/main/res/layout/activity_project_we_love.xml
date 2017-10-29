@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context="com.payu.vishant.payukickstarter.activities.ActivityProjectWeLove">
+    tools:context="com.hackerearth.vishant.kickstarter.activities.ActivityProjectWeLove">
 
     <include layout="@layout/toolbar" />
 
