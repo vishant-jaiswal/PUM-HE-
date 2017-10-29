@@ -75,14 +75,6 @@ public class ActivityMain extends SlidingActivity implements View.OnClickListene
 
     @Override
     public void onSwipeLeft() {
-        Intent intent = new Intent(this,ActivityProjectWeLove.class);
-        /*for(KickStarter k : kickStarterArrayList){
-            if((k.getPercentage_funded() > MAX_FUNDING_LIMIT) && (k.getNum_backers() > MAX_BACKERS_LIMIT)){
-                projectWeLoveList.add(k);
-            }
-        }
-        intent.putExtra("PWL",projectWeLoveList);*/
-        startActivity(intent);
     }
 
     @Override

@@ -22,7 +22,6 @@
         <activity
             android:name="com.hackerearth.vishant.kickstarter.activities.ActivityKickStartDetail"
             android:theme="@style/MainActivityTheme" />
-        <activity android:name="com.hackerearth.vishant.kickstarter.activities.ActivityProjectWeLove"></activity>
     </application>
 
 </manifest>
